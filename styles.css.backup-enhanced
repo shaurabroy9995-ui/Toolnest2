@@ -1,0 +1,240 @@
+/* BACKUP: Enhanced version with glassmorphism, dark theme, animations, ripple */
+/* This file contains all the visual enhancements applied */
+/* Restore from this file if you want the enhancements back */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: linear-gradient(180deg, #fbfdff, #f3f8ff);
+    --surface: #ffffff;
+    --muted: #6b6f76;
+    --accent: #2b9cff;
+    --accent-2: #34b3ff;
+    --text: #17202a;
+    --radius: 12px;
+    --card-shadow: 0 8px 24px rgba(17, 38, 76, 0.06);
+}
+
+/* Dark theme variables */
+:root.dark {
+    --bg: linear-gradient(180deg, #0f1724, #071024);
+    --surface: rgba(20, 24, 30, 0.6);
+    --muted: #9aa6b2;
+    --accent: #2aa6c9;
+    --accent-2: #34b3ff;
+    --text: #e6f0f6;
+    --card-shadow: 0 18px 50px rgba(2, 6, 23, 0.6);
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    background: var(--bg);
+    line-height: 1.5;
+    color: var(--text);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header {
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1.2rem;
+}
+
+.logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+/* Mobile nav toggle */
+.nav-toggle {
+    display: none;
+    width: 44px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-toggle .hamburger {
+    width: 22px;
+    height: 2px;
+    background: #2b3742;
+    position: relative;
+    display: inline-block;
+}
+
+.nav-toggle .hamburger::before,
+.nav-toggle .hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 22px;
+    height: 2px;
+    background: #2b3742;
+}
+
+.nav-toggle .hamburger::before {
+    top: -6px;
+}
+
+.nav-toggle .hamburger::after {
+    top: 6px;
+}
+
+nav.open {
+    display: flex !important;
+}
+
+nav a.active {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 2px;
+}
+
+/* Section titles */
+h3 {
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+    font-family: 'Poppins', 'Montserrat', sans-serif;
+}
+
+/* Glassmorphism for tool cards */
+.tool-card {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(10px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: var(--card-shadow);
+    transition: transform 260ms cubic-bezier(.2, .9, .3, 1), box-shadow 260ms ease, background 260ms ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(42, 166, 201, 0.18);
+}
+
+/* Subtle fade-in when in view */
+.in-view {
+    opacity: 1;
+    transform: none;
+    transition: opacity 420ms ease, transform 420ms cubic-bezier(.2, .9, .3, 1);
+}
+
+/* Ensure visible by default so site works if JS fails */
+.tool-card,
+.panel {
+    opacity: 1;
+    transform: none;
+}
+
+/* Button gradients & hover */
+.btn-primary {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    transition: background 350ms ease, transform 180ms ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, var(--accent-2), var(--accent));
+    transform: translateY(-3px);
+}
+
+/* Ripple effect container */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple .ripple-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(0);
+    animation: ripple 600ms linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(6);
+        opacity: 0;
+    }
+}
+
+/* Ad placeholder pulse */
+.ad-placeholder {
+    animation: adPulse 3.6s ease-in-out infinite;
+}
+
+@keyframes adPulse {
+    0% {
+        box-shadow: 0 8px 28px rgba(17, 38, 76, 0.04);
+    }
+
+    50% {
+        box-shadow: 0 18px 48px rgba(17, 38, 76, 0.06);
+    }
+
+    100% {
+        box-shadow: 0 8px 28px rgba(17, 38, 76, 0.04);
+    }
+}
+
+/* Sticky footer with gradient border */
+footer {
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    border-radius: 8px 8px 0 0;
+    opacity: 0.15;
+}
+
+nav {
+    display: flex;
+    gap: 0.9rem;
+    align-items: center;
+}
+
+nav a {
+    font-weight: 600;
+    color: #2b3742;
+}
+
+.donate-btn {
+    background: linear-gradient(90deg, #ff7f50, #ff9a66);
+    color: #fff;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    font-weight: 700;
+    box-shadow: 0 8px 26px rgba(255, 127, 80, 0.14);
+}
